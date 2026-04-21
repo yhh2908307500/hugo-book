@@ -126,7 +126,7 @@
   <div class="book-taxonomy-list">
     <strong>🏷️ 标签：</strong>
     {{ range . }}
-      <a href="{{ "/my-blog/tags/" | relLangURL }}{{ . | urlize }}" 
+      <a href="{{ printf "/tags/%s" . | urlize | relLangURL }}" 
          class="book-tag">
         #{{ . }}
       </a>
@@ -139,7 +139,7 @@
   <div class="book-taxonomy-list">
     <strong>📂 分类：</strong>
     {{ range . }}
-      <a href="{{ "/my-blog/categories/" | relLangURL }}{{ . | urlize }}" 
+      <a href="{{ printf "/categories/%s" . | urlize | relLangURL }}" 
          class="book-category">
         {{ . }}
       </a>
@@ -210,3 +210,6 @@
     }
   </style>
 </```
+```
+
+```

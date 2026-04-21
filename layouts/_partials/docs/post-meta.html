@@ -9,7 +9,7 @@
   <div class="text-small" style="margin-top: 15px;">
     <span class="book-meta-label">标签:</span>
     {{ range $n, $term := . }}{{ if $n }}, {{ end }}
-      <a href="{{ $term.RelPermalink }}" class="book-tag">{{ $term.Title }}</a>
+      <a href="{{ $term.Permalink }}" class="book-tag">{{ $term.Title }}</a>
     {{- end }}
   </div>
 {{ end }}
@@ -18,7 +18,7 @@
   <div class="text-small" style="margin-top: 15px;">
     <span class="book-meta-label">分类:</span>
     {{ range $n, $term := . }}{{ if $n }}, {{ end }}
-      <a href="{{ $term.RelPermalink }}" class="book-category">{{ $term.Title }}</a>
+      <a href="{{ $term.Permalink }}" class="book-category">{{ $term.Title }}</a>
     {{- end }}
   </div>
 {{ end }}
