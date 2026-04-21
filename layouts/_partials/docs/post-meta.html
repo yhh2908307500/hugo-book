@@ -5,12 +5,20 @@
   </div>
 {{ end }}
 
-{{ range $taxonomy, $_ := .Site.Taxonomies }}
-  {{ with $terms := $.GetTerms $taxonomy }}
-  <div class="text-small">
-    {{ range $n, $term := $terms }}{{ if $n }}, {{ end }}
+{{ with $.GetTerms "tags" }}
+  <div class="text-small" style="margin-top: 15px;">
+    <span class="book-meta-label">标签:</span>
+    {{ range $n, $term := . }}{{ if $n }}, {{ end }}
       <a href="{{ $term.RelPermalink }}" class="book-tag">{{ $term.Title }}</a>
     {{- end }}
   </div>
-  {{ end }}
+{{ end }}
+
+{{ with $.GetTerms "categories" }}
+  <div class="text-small" style="margin-top: 15px;">
+    <span class="book-meta-label">分类:</span>
+    {{ range $n, $term := . }}{{ if $n }}, {{ end }}
+      <a href="{{ $term.RelPermalink }}" class="book-category">{{ $term.Title }}</a>
+    {{- end }}
+  </div>
 {{ end }}
