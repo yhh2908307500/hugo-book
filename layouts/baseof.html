@@ -88,6 +88,68 @@
 
 {{ define "main" }}
   <article class="markdown book-article">
+
+      <h1>{{ .Title }}</h1>
+
+    <!-- 显示作者 -->
+  {{ with .Params.author }}
+  <div class="book-meta-info">
+    <strong >🏷️ 作者：</strong>
+      <span class="meta-item">
+        🥳{{ . }}
+      </span>
+      
+      {{ with $.Date }}
+      <span class="meta-item">
+        📅 {{ .Format "2006-01-02" }}
+      </span>
+      {{ end }}
+
+      {{ with $.Params.words }}
+      <span class="meta-item">
+        📝 {{ . }} 字
+      </span>
+      {{ end }}
+
+      {{ with $.Params.readingTime }}
+      <span class="meta-item">
+        ⏱️ {{ . }} 分钟
+      </span>
+      {{ end }}
+  </div>
+  {{ end }}
+
+
+
+    <!-- 显示标签 -->
+  {{ with .Params.tags }}
+  <div class="book-taxonomy-list">
+    <strong>🏷️ 标签：</strong>
+    {{ range . }}
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" 
+         class="book-tag">
+        #{{ . }}
+      </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <!-- 显示分类 -->
+  {{ with .Params.categories }}
+  <div class="book-taxonomy-list">
+    <strong>📂 分类：</strong>
+    {{ range . }}
+      <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" 
+         class="book-category">
+        {{ . }}
+      </a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+
+  
+
     {{- .Content -}}
   </article>
 {{ end }}
@@ -105,3 +167,46 @@
 {{ define "toc" }}
   {{ partial "docs/toc" . }}
 {{ end }}
+
+  <style>
+    /* Meta info styles */
+    .book-meta-info {
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .meta-item {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Taxonomy list styles */
+    .book-taxonomy-list {
+      margin: 15px 0;
+    }
+
+    /* Tag styles */
+    .book-tag {
+      background: #07fc44;
+      padding: 3px 10px;
+      border-radius: 15px;
+      margin-right: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #0c5460;
+    }
+
+    /* Category styles */
+    .book-category {
+      background: #7fb5ec;
+      padding: 3px 10px;
+      border-radius: 15px;
+      margin-right: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #0c5460;
+    }
+  </style>
+</```
