@@ -7,25 +7,10 @@
 
 {{ range $taxonomy, $_ := .Site.Taxonomies }}
   {{ with $terms := $.GetTerms $taxonomy }}
-  <div class="text-small" style="margin-top: 15px;">
-
-    {{ if eq $taxonomy "tags" }}
-      
-        {{ range $n, $term := $terms }}{{ if $n }}, {{ end }}
+  <div class="text-small">
+    {{ range $n, $term := $terms }}{{ if $n }}, {{ end }}
       <a href="{{ $term.RelPermalink }}" class="book-tag">{{ $term.Title }}</a>
-
     {{- end }}
-
-    {{ else if eq $taxonomy "categories" }}
-      
-        {{ range $n, $term := $terms }}{{ if $n }}, {{ end }}
-      <a href="{{ $term.RelPermalink }}" class="book-category">{{ $term.Title }}</a>
-
-    {{- end }}
-
-    {{ end }}
-
-
   </div>
   {{ end }}
 {{ end }}
